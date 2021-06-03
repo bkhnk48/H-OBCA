@@ -118,7 +118,7 @@ function calc_hybrid_astar_path(sx::Float64, sy::Float64, syaw::Float64,
 
     syaw, gyaw = pi_2_pi(syaw), pi_2_pi(gyaw)
 
-    const c = calc_config(ox, oy, xyreso, yawreso, obreso)
+    c = calc_config(ox, oy, xyreso, yawreso, obreso)
     kdtree = KDTree(hcat(ox, oy)')
     obmap, gkdtree = calc_obstacle_map(ox, oy, c)
     nstart = Node(round(Int64,sx/xyreso), round(Int64,sy/xyreso), round(Int64, syaw/yawreso),true,[sx],[sy],[syaw],0.0,0.0, -1)
