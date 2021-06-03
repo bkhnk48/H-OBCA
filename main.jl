@@ -82,7 +82,7 @@ vObPlot = [4 4 4]	# number of vertices of each obstacle, vector of dimenion nOb
 # obstacle representation for optimization problem
 nOb =  3 			# number of obstacles 
 vOb = [3 3 2]		# number of vertices of each obstacle, vector of dimenion nOb
-vObMPC = vOb-1		# adjustment for optimizaton problem
+vObMPC = vOb .- 1		# adjustment for optimizaton problem
 
 if scenario == "backwards"
 	println("Start Reverse Parking")
