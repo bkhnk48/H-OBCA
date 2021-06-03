@@ -110,12 +110,12 @@ function calc_paths(sx::Float64, sy::Float64, syaw::Float64,
         x, y, yaw, directions = generate_local_course(path.L, path.lengths, path.ctypes, maxc, step_size*maxc)
 
         # convert global coordinate
-        path.x = [cos(-q0[3]) * ix + sin(-q0[3]) * iy + q0[1] for (ix, iy) in zip(x, y)]
-        path.y = [-sin(-q0[3]) * ix + cos(-q0[3]) * iy + q0[2] for (ix, iy) in zip(x, y)]
-        path.yaw = pi_2_pi.([iyaw + q0[3] for iyaw in yaw])
-        path.directions = directions
-        path.lengths = [l/maxc for l in path.lengths]
-        path.L = path.L/maxc
+        path = @set path.x = [cos(-q0[3]) * ix + sin(-q0[3]) * iy + q0[1] for (ix, iy) in zip(x, y)]
+        path = @set path.y = [-sin(-q0[3]) * ix + cos(-q0[3]) * iy + q0[2] for (ix, iy) in zip(x, y)]
+        path = @set path.yaw = pi_2_pi.([iyaw + q0[3] for iyaw in yaw])
+        path = @set path.directions = directions
+        path = @set path.lengths = [l/maxc for l in path.lengths]
+        path = @set path.L = path.L/maxc
 
     end
 
