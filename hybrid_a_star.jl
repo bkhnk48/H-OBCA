@@ -33,6 +33,7 @@ using PyPlot
 using DataFrames
 using NearestNeighbors
 using DataStructures 
+using Setfield
 
 include("./reeds_shepp.jl")
 include("./a_star.jl")
@@ -200,10 +201,10 @@ function update_node_with_analystic_expantion(current::Node,
     apath = analystic_expantion(current, ngoal, obmap, c, kdtree, ox, oy)
     if apath != nothing
         # println("Find path! with analystic_expantion")
-        current.x = vcat(current.x, apath.x[2:end-1])
-        current.y = vcat(current.y, apath.y[2:end-1])
-        current.yaw = vcat(current.yaw, apath.yaw[2:end-1])
-        current.cost += calc_rs_path_cost(apath)
+        current = @set current.x = vcat(current.x, apath.x[2:end-1])
+        current = @set current.y = vcat(current.y, apath.y[2:end-1])
+        current = @set current.yaw = vcat(current.yaw, apath.yaw[2:end-1])
+        current = @set current.cost += calc_rs_path_cost(apath)
         return true, current
     end
 
