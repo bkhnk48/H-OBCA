@@ -127,12 +127,12 @@ function calc_hybrid_astar_path(sx::Float64, sy::Float64, syaw::Float64,
     if USE_HOLONOMIC_WITH_OBSTACLE_HEURISTIC
         h_dp = calc_holonomic_with_obstacle_heuristic(ngoal, ox, oy, xyreso)
     else
-        h_dp = Array{Float64}()
+        h_dp = Array{Float64, 1}(undef, 1)
     end
     if USE_NONHOLONOMIC_WITHOUT_OBSTACLE_HEURISTIC
         h_rs = calc_nonholonomic_without_obstacle_heuristic(ngoal, c)
     else
-        h_rs = Array{Float64}()
+        h_rs = Array{Float64, 1}(undef, 1)
     end
 
     open, closed = Dict{Int64, Node}(), Dict{Int64, Node}()
