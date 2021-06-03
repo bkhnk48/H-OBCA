@@ -33,6 +33,7 @@ module reeds_shepp
 using PyPlot
 using Test
 using Pkg
+using Setfield
 
 const STEP_SIZE = 0.1
 
@@ -209,8 +210,8 @@ end
 function set_path(paths::Array{Path}, lengths::Array{Float64}, ctypes::Array{String})
 
     path = Path([],[],0.0,[],[],[],[])
-    path.ctypes = ctypes
-    path.lengths = lengths
+    path = @set path.ctypes = ctypes
+    path = @set path.lengths = lengths
 
     # check same path exist
     for tpath in paths
@@ -222,7 +223,7 @@ function set_path(paths::Array{Path}, lengths::Array{Float64}, ctypes::Array{Str
         end
     end
 
-    path.L = sum([abs(i) for i in lengths])
+    path = @set path.L = sum([abs(i) for i in lengths])
 
     #Base.Test.@test path.L >= 0.01
     Test.@test path.L >= 0.01
