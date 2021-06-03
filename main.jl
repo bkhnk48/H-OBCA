@@ -209,7 +209,11 @@ end
 ### Smoothen velocity 0.3 m/s^2 max acceleration ###
 v,a = veloSmooth(rv,0.3,Ts/sampleN)
 ### compute steering angle ###
-delta = atan(diff(ryaw)*L/motionStep.*sign(v[1:end-1]));
+signedArray = Array{Int64}(undef, length(v));
+for i in 1:length(v)
+	signedArray[i] = sign(v[i])
+end
+delta = atan(diff(ryaw)*L/motionStep.*signedArray); #sign(v[1:end-1]));
 
 ### Down-sample for Warmstart ##########
 rx_sampled = rx[1:sampleN:end]
