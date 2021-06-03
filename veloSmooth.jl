@@ -63,7 +63,10 @@ function veloSmooth(v,amax,Ts)
 
 	for j = 1:length(index1)
 		if v_ex[index1[j]] > v_cut1 || v_ex[index1[j]+1] > v_cut1
-			v_bar[1,index1[j]:index1[j]+accPhase] = linspace(0,abs(v[1]),accPhase+1)''
+			#println(accPhase)
+			#prevent out of boundary exception
+			accPhase = min(length(v) + 40 - index1[j], accPhase)
+			v_bar[1,index1[j]:index1[j]+accPhase] = LinRange(0,abs(v[1]),accPhase+1)''
 		elseif v_ex[index1[j]] < -v_cut1 || v_ex[index1[j]+1] < -v_cut1
 			v_bar[1,index1[j]-accPhase+1:index1[j]+1] = linspace(-abs(v[1]),0,accPhase+1)''
 		end
