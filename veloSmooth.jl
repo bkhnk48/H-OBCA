@@ -68,24 +68,24 @@ function veloSmooth(v,amax,Ts)
 			accPhase = min(length(v) + 40 - index1[j], accPhase)
 			v_bar[1,index1[j]:index1[j]+accPhase] = LinRange(0,abs(v[1]),accPhase+1)''
 		elseif v_ex[index1[j]] < -v_cut1 || v_ex[index1[j]+1] < -v_cut1
-			v_bar[1,index1[j]-accPhase+1:index1[j]+1] = linspace(-abs(v[1]),0,accPhase+1)''
+			v_bar[1,index1[j]-accPhase+1:index1[j]+1] = LinRange(-abs(v[1]),0,accPhase+1)''
 		end
 	end
 
 	for j = 1:length(index3)
 		if v_ex[index3[j]] > v_cut1 || v_ex[index3[j]+1] > v_cut1
-			v_bar[2,index3[j]-accPhase+1:index3[j]+1] = linspace(abs(v[1]),0,accPhase+1)''
+			v_bar[2,index3[j]-accPhase+1:index3[j]+1] = LinRange(abs(v[1]),0,accPhase+1)''
 		elseif v_ex[index3[j]] < -v_cut1 || v_ex[index3[j]+1] < -v_cut1
-			v_bar[2,index3[j]:index3[j]+accPhase] = linspace(0,-abs(v[1]),accPhase+1)''
+			v_bar[2,index3[j]:index3[j]+accPhase] = LinRange(0,-abs(v[1]),accPhase+1)''
 		end
 	end
 
 	for j = 1:length(index2)
-		v_bar[3,index2[j]-accPhase:index2[j]+accPhase] = linspace(-abs(v[1]),abs(v[1]),2*accPhase+1)''
+		v_bar[3,index2[j]-accPhase:index2[j]+accPhase] = LinRange(-abs(v[1]),abs(v[1]),2*accPhase+1)''
 	end
 
 	for j = 1:length(index4)
-		v_bar[4,index4[j]-accPhase:index4[j]+accPhase] = linspace(abs(v[1]),-abs(v[1]),2*accPhase+1)''
+		v_bar[4,index4[j]-accPhase:index4[j]+accPhase] = LinRange(abs(v[1]),-abs(v[1]),2*accPhase+1)''
 	end
 
 	for i = 20:length(v)+19
