@@ -30,6 +30,7 @@
 # function defined in setup.jl
 clear()
 using PyCall
+using TickTock
 
 close("all")
 ##################################################
@@ -191,7 +192,7 @@ x0 = [-6  9.5   0.0    0.0]
 # x0 = [9  7   0.0    0.0]
 
 # call Hybrid A*
-tic()
+tick()
 rx, ry, ryaw = hybrid_a_star.calc_hybrid_astar_path(x0[1], x0[2], x0[3], xF[1], xF[2], xF[3], ox, oy, hybrid_a_star.XY_GRID_RESOLUTION, hybrid_a_star.YAW_GRID_RESOLUTION, hybrid_a_star.OB_MAP_RESOLUTION)
 timeHybAstar = toq();
 
