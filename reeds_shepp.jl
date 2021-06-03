@@ -851,7 +851,7 @@ function check_path(start_x, start_y, start_yaw, end_x, end_y, end_yaw, max_curv
     # println(start_x,",", start_y, "," ,start_yaw, ",", max_curvature)
     paths = calc_paths(start_x, start_y, start_yaw, end_x, end_y, end_yaw, max_curvature)
 
-    Base.Test.@test length(paths) >= 1
+    Test.@test length(paths) >= 1
 
     for path in paths
         Base.Test.@test abs(path.x[1] - start_x) <= 0.01
