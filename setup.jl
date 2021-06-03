@@ -49,9 +49,9 @@ include("obstHrep.jl")
 include("plotTraj.jl")
 include("hybrid_a_star.jl")
 ##############################
-##include("DualMultWS.jl")
-##include("veloSmooth.jl")
+include("DualMultWS.jl")
+include("veloSmooth.jl")
 
 # function that clears terminal output
-#clear() = run(@static is_unix() ? `clear` : `cmd /c cls`)
+clear() = run(@static Sys.isunix() ? `clear` : `cmd /c cls`)
 
