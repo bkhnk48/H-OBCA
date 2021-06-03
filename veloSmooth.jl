@@ -109,7 +109,9 @@ function veloSmooth(v,amax,Ts)
 		end
 	end
 
-	a = diff(v_barMM')./Ts
+	array_of_v_barMM_T = cat(v_barMM'..., dims = 1)#T mean tranpose
+	#println(array_of_v_barMM_T)
+	a = diff(array_of_v_barMM_T)./Ts
 
 	return v_barMM', a
 
