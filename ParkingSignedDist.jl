@@ -45,6 +45,17 @@ function ParkingSignedDist(x0,xF,N,Ts,L,ego,XYbounds,nOb,vOb, A, b,fixTime,xWS,u
 	#                             mumps_mem_percent=6000,max_iter=200,tol=1e-5, print_level=0,
 	#                             min_hessian_perturbation=1e-12,jacobian_regularization_value=1e-7))#,nlp_scaling_method="none"
 	m = Model()
+	set_optimizer(m, Ipopt.Optimizer)
+	set_optimizer_attributes(m, "hessian_approximation" => "exact")
+	set_optimizer_attributes(m, "mumps_pivtol" => 1e-6)
+	set_optimizer_attributes(m, "alpha_for_y" => "min")
+	set_optimizer_attributes(m, "recalc_y" => "yes")
+	set_optimizer_attributes(m, "mumps_mem_percent" => 6000)
+	set_optimizer_attributes(m, "max_iter" => 200)
+	set_optimizer_attributes(m, "tol" => 1e-5)
+	set_optimizer_attributes(m, "print_level" => 0)
+	set_optimizer_attributes(m, "min_hessian_perturbation" => 1e-12)
+	set_optimizer_attributes(m, "jacobian_regularization_value" => 1e-7)
 
 	##############################
 	# defining optimization variables
