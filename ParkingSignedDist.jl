@@ -27,6 +27,7 @@
 # computes collision-free trajectory by appropriately reformulating the distance function
 ###############
 
+using JuMP, Ipopt
 
 function ParkingSignedDist(x0,xF,N,Ts,L,ego,XYbounds,nOb,vOb, A, b,fixTime,xWS,uWS)
 
@@ -40,9 +41,10 @@ function ParkingSignedDist(x0,xF,N,Ts,L,ego,XYbounds,nOb,vOb, A, b,fixTime,xWS,u
 	# Define IPOPT as solver and well as solver settings
 	##############################
 	# seems to work best
-	m = Model(solver=IpoptSolver(hessian_approximation="exact",mumps_pivtol=1e-6,alpha_for_y="min",recalc_y="yes",
-	                             mumps_mem_percent=6000,max_iter=200,tol=1e-5, print_level=0,
-	                             min_hessian_perturbation=1e-12,jacobian_regularization_value=1e-7))#,nlp_scaling_method="none"
+	#m = Model(solver=IpoptSolver(hessian_approximation="exact",mumps_pivtol=1e-6,alpha_for_y="min",recalc_y="yes",
+	#                             mumps_mem_percent=6000,max_iter=200,tol=1e-5, print_level=0,
+	#                             min_hessian_perturbation=1e-12,jacobian_regularization_value=1e-7))#,nlp_scaling_method="none"
+	m = Model()
 
 	##############################
 	# defining optimization variables
